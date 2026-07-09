@@ -1,4 +1,4 @@
-#The first official version of my working code! 7557
+#The first official version of my working code!
 import time
 import glob
 import serial
