@@ -1,9 +1,10 @@
+#The first official version of my working code!
 import time
 import glob
 import serial
 import speech_recognition as sr
 import HersheyFonts
-#git
+
 BAUD_RATE = 115200       
 FEED_RATE = 1200         
 
