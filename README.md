@@ -12,6 +12,7 @@
  [ video ]
 
  # Features
+ > Note: I use a old ORTUR laser cutter that doesn't have a laser anymore as my plotter.
  - Using [SpeechRecognition](https://pypi.org/project/SpeechRecognition/) and [Hershey Fonts](https://pypi.org/project/Hershey-Fonts/), my code converts speech into mappable G-code. This G-code is then automatically sent to a plotter, allowing spoken words to be written down on a piece of paper.
 
  - The pen is held up by a 3D-printed pen holder made in Fusion 360. The holder uses the pen's own weight to keep the pen stable, allowing for smooth and non-blotchy text.
@@ -33,7 +34,7 @@
 
 - A machine that can run G-code, preferably one with only an X and Y axis, but any will work. Additionally, a wired connection is preferred, but a Bluetooth connection is included and works as well.
 
-- An attachment to hold the pen in place. While I use *this* attachment, you could also just zip-tie a pen onto the head of your machine.
+- An attachment to hold the pen in place. While I use [this](https://github.com/Papas12213/Voice-Script/blob/eca39b63c67b48b85567757923a99c11ae64fa83/pen%20holder%20V2.stl) attachment, you could also just zip-tie a pen onto the head of your machine.
 
 - A microphone is needed for your voice to be recorded and converted into text.
 
@@ -46,7 +47,7 @@ The code is broken down into 3 steps:
 3. Execution 
       - The G-code is now sent to your plotter/machine. Since my plotter's dimensions are limited, it monitors the current x/y coordinates and compares them against the plotter's max dimensions. When the plotter finishes a word and notices it cannot fit the next word in the given space, it will pause and tell the user to lift the pen so that it can create a new line to continue the sentence.
 
-Since my plotter doesn't have a z-axis (it's an old laser cutter I found on the side of the road), I had to make a few workarounds. Since the pen would normally drag when moving onto a new line or when homing, I added stop points where the user must lift the pen before the machine can continue. This prevents those huge line streaks that would normally happen. Knowing this, I also updated my pen holder so that the pen could easily be removed. My first version needed the user to constantly screw and unscrew a screw, so I changed it so that the pen's weight keeps it stable.
+Since my plotter doesn't have a z-axis, I had to make a few workarounds. Since the pen would normally drag when moving onto a new line or when homing, I added stop points where the user must lift the pen before the machine can continue. This prevents those huge line streaks that would normally happen. Knowing this, I also updated my pen holder so that the pen could easily be removed. My first version needed the user to constantly screw and unscrew a screw, so I changed it so that the pen's weight keeps it stable.
 
 # Pen Holder
 Print them yourself here:
@@ -70,5 +71,5 @@ Print them yourself here:
 
 | Pros | Cons |
 | --- | --- |
-| Holds thin Sharpies perfectly and allows for easy removal | Other big pens may not fit or may be too loose. |
+| Holds thin Sharpies perfectly and allows for easy removal | Other big pens may not fit or may be too loose |
 | The pen doesnt blotch or make thin lines when writing | Again, this only happens with the thin Sharpies |

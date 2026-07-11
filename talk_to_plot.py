@@ -8,11 +8,11 @@ import HersheyFonts
 BAUD_RATE = 115200       
 FEED_RATE = 1200         
 
-FONT_SIZE = 14.0 # size of the text
+FONT_SIZE = 20.0 # size of the text
 START_X = 0.0 #Where Machine moves to when first starting
-START_Y = 130.0 #Where machine moves to (Starts at the very top)
+START_Y = 120.0 #Where machine moves to (Starts at the very top)
 
-def discover_port():
+def auto_discover_grbl_port():
     print("Looking for machine...")
     patterns = [
         '/dev/cu.usbserial*', '/dev/cu.usbmodem*', '/dev/cu.wchusbserial*', 
@@ -28,10 +28,10 @@ def discover_port():
     return None
 
 def initialize_machine():
-    port_path = discover_port()
+    port_path = auto_discover_grbl_port()
     
     if not port_path:
-        print("\n[!] No USB detected hardware detected.")
+        print("\nNo USB detected hardware detected.")
         return None
 
     try:
@@ -49,7 +49,7 @@ def initialize_machine():
         print("Success!")
         return dev
     except Exception as e:
-        print(f"\n[!] COMMUNICATION CRASH: Failed to open serial thread: {e}")
+        print(f"\nCOMMUNICATION CRASH: Failed to open serial thread: {e}")
         return None
 
 def send_gcode_line(dev, command):
@@ -69,7 +69,7 @@ def send_gcode_line(dev, command):
                 return False
         time.sleep(0.005)
 
-def speech_to_gcode(text):
+def speech_text_to_grbl_gcode(text):
     gcode_commands = ["G21", "G90"]
     
     font = HersheyFonts.HersheyFonts()
@@ -77,7 +77,7 @@ def speech_to_gcode(text):
     font.normalize_rendering(FONT_SIZE) 
     
     MAX_X = 148.0 
-    LINE_SPACING = 9.0
+    LINE_SPACING = 10.0
     
     current_x = START_X
     current_y = START_Y
@@ -91,20 +91,22 @@ def speech_to_gcode(text):
         
         if current_x + word_width > MAX_X and current_x != START_X:
             gcode_commands.append("WAIT:Lift pen out. [Press Enter to move to next line]")
-            
             current_y -= LINE_SPACING
             current_x = START_X
-            
             gcode_commands.append(f"G0 X{current_x:.2f} Y{current_y:.2f}")
+            
             gcode_commands.append("SLEEP:1.5")
+            
             gcode_commands.append("WAIT:Lower pen back in. [Press Enter to continue writing]")
             
         for (x1, y1), (x2, y2) in strokes:
-            start_y = current_y
-            end_y = current_y
+            start_x = current_x + x1
+            start_y = current_y + y1
+            end_x = current_x + x2
+            end_y = current_y + y2
             
-            gcode_commands.append(f"G0 X{current_x + x1:.2f} Y{start_y:.2f}")
-            gcode_commands.append(f"G1 X{current_x + x2:.2f} Y{end_y:.2f} F{FEED_RATE}")
+            gcode_commands.append(f"G0 X{start_x:.2f} Y{start_y:.2f}")
+            gcode_commands.append(f"G1 X{end_x:.2f} Y{end_y:.2f} F{FEED_RATE}")
             
         current_x += word_width + (FONT_SIZE * 0.4)
         
@@ -115,10 +117,6 @@ def speech_to_gcode(text):
 
 def listen_and_write(dev):
     recognizer = sr.Recognizer()
-
-    recognizer.pause_threshold = 2.0
-    recognizer.non_speaking_duration = 1.0
-
     with sr.Microphone() as source:
     
         print("\nCalibrating audio environment... (Quiet please)")
@@ -126,7 +124,7 @@ def listen_and_write(dev):
         print("Ready, say your phrase now.")
         
         try:
-            audio = recognizer.listen(source, timeout=10, phrase_time_limit=30)
+            audio = recognizer.listen(source, timeout=5, phrase_time_limit=20)
             
             text = recognizer.recognize_google(audio).capitalize()
             print(f"Recognized Message: \"{text}\"")
@@ -138,7 +136,7 @@ def listen_and_write(dev):
             time.sleep(1.0)
             input("\nPut the pen in now. [Press Enter to confirm and begin drawing]")
             
-            commands = speech_to_gcode(text)
+            commands = speech_text_to_grbl_gcode(text)
             
             print(f"Sending code ({len(commands)} actions) to machine...")
             for cmd in commands:
