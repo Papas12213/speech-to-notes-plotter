@@ -49,13 +49,13 @@ The code is broken down into 3 steps:
 Since my plotter doesn't have a z-axis (it's an old laser cutter I found on the side of the road), I had to make a few workarounds. Since the pen would normally drag when moving onto a new line or when homing, I added stop points where the user must lift the pen before the machine can continue. This prevents those huge line streaks that would normally happen. Knowing this, I also updated my pen holder so that the pen could easily be removed. My first version needed the user to constantly screw and unscrew a screw, so I changed it so that the pen's weight keeps it stable.
 
 # Pen Holder
- Version 1:
-   - Zip tie. My plotter has 2 holes on the head, so I wrapped a zip tie around these holes, stuck a pen inside, and tightened it as hard as I could. While it works, the pen was kinda hard to remove and would sometimes come lose
+ Unnoficial version:
+   - Zip tie. My plotter has 2 holes on the head, so I wrapped a zip tie around these holes, stuck a pen inside, and tightened it as hard as I could. While it works, the pen was kind of hard to remove and would sometimes come lose.
 
-Version 2:
+Version 1:
    - First actual version, designed in Fusion 360 and then 3D printed. It features 3 holes for screws and a large holding area that can fit multiple different pens. The top 2 holes are for screws and are meant to mount the holder onto my plotter. The side screw it used to tighten the holding area and prevent the pen fron moving.
-   | Pros:  | Cons: |
+   | Pros: | Cons: |
    | ------------- | ------------- |
-   | Can hold many different pen sizes  | The side screw either forces the pen to be too high or too low, making the writing barely visible or super blotchy |
+   | Can hold many different pen sizes | The side screw either forces the pen to be too high or too low, making the writing barely visible or super blotchy |
    | Can easily keep pens stable and in place | When the plotter moves onto a new line, it's very impractical to untighten and tighten the side screw over and over |
 
