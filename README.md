@@ -9,8 +9,18 @@
 
  > Note: Since my plotter does not have a z-axis, the code does not include Z commands, which could cause issues on certain machines (This will be updated later to accommodate all types of machines)
 
- Don't have a plotter but want to see it in action for yourself? Here's me saying multiple different phrases:
+ Don't have a plotter but want to see it in action for yourself? Here's me saying multiple different phrases (I was a bit sick when recording these so ignore my voice):
 
+[Hello](https://youtu.be/dF_U7TRG618)
+[We love Hack club](https://youtu.be/mgRY7kE7DXc)
+[England beat Norway...](https://youtu.be/rNzZpGXZH3M)
+[Happy fourth of july](https://youtu.be/bYTjIsTIinE)
+[Hope you like my project](https://youtu.be/ZSXomz5G_Ws) (Video from the opening GIF)
+[I hope you have a wonderful day](https://youtu.be/Jyh2SVxgrjQ)
+[I love my cat](https://youtu.be/IWMQLqXhyNM)
+[I love San Francisco](https://youtu.be/gVoCUxS2Upw)
+[What other phrases should I say](https://youtu.be/WT3sv21QGg4)
+ 
  [ video ]
 
  # Features
