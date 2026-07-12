@@ -1,4 +1,5 @@
 #The first official version of my working code for my plotter!
+#Press control + c to shut off machine at any given time
 import time
 import glob
 import serial
