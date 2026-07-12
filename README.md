@@ -21,6 +21,8 @@
 - [I love San Francisco](https://youtu.be/gVoCUxS2Upw)
 - [What other phrases should I say](https://youtu.be/WT3sv21QGg4)
 
+More photos [Here](https://github.com/Papas12213/Voice-Script/tree/main/Additional%20photos)
+
  # Features
  > Note: I use a old ORTUR laser cutter that doesn't have a laser anymore as my plotter.
  - Using [SpeechRecognition](https://pypi.org/project/SpeechRecognition/) and [Hershey Fonts](https://pypi.org/project/Hershey-Fonts/), my code converts speech into mappable G-code. This G-code is then automatically sent to a plotter, allowing spoken words to be written down on a piece of paper.
@@ -40,7 +42,7 @@ The code is broken down into 3 steps:
 1. Voice Capture
       - When you first speak into your microphone, SpeechRecognition converts your words into a digital string of text. This is needed to convert your words into G-code.
 2. Translation to G-code
-      - Now that your words are a digital string of text, the speech_text_to_grbl_gcode function uses HersheyFonts to find the coordinates needed to map out every letter in your sentence. It calculates the X and Y coordinates for every line segment, and these coordinates are then input into the G-code format. This is the part that makes your words mappable.
+      - Now that your words are a digital string of text, the [speech_text_to_grbl_gcode](https://github.com/Papas12213/Voice-Script/blob/fedc6ea33ce8b04513ea296874003bca230ff632/talk_to_plot.py#L73) function uses HersheyFonts to find the coordinates needed to map out every letter in your sentence. It calculates the X and Y coordinates for every line segment, and these coordinates are then input into the G-code format. This is the part that makes your words mappable.
 3. Execution 
       - The G-code is now sent to your plotter/machine. Since my plotter's dimensions are limited, it monitors the current x/y coordinates and compares them against the plotter's max dimensions. When the plotter finishes a word and notices it cannot fit the next word in the given space, it will pause and tell the user to lift the pen so that it can create a new line to continue the sentence.
 
