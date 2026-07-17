@@ -1,5 +1,6 @@
-# Speech-To-Physical-Text-Plotter
- My machine is a pen plotter that physically writes down whatever you say to it. It's like speech-to-text, but now it's actually writing.
+# VoiceScipt
+ ### A Speech-to-physical-text plotter
+My machine is a pen plotter that physically writes down whatever you say to it. It's like speech-to-text, but now it's actually writing.
  
 <img width="530" height="298" alt="gif - July 11, 2026 at 01 47 08" src="https://github.com/user-attachments/assets/e553d5aa-d761-409c-b1c4-8b83ecc2ac9e" />
 
